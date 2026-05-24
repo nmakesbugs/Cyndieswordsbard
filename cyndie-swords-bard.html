@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Swords Bard — Level 5 Character Draft</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #0d0f1a;
+    --navy: #131628;
+    --card: #181c30;
+    --border: #2e3455;
+    --gold: #c9a84c;
+    --gold-light: #e8c96d;
+    --gold-dim: #8a6f34;
+    --silver: #a8b0c8;
+    --cream: #f0ead6;
+    --text: #cdd3e8;
+    --muted: #7a82a0;
+    --accent: #9b6baa;
+    --accent-glow: rgba(155, 107, 170, 0.15);
+    --red: #c45c5c;
+    --green: #5ca87a;
+    --teal: #5ca8a0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--deep);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(ellipse at 20% 20%, rgba(155, 107, 170, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(13, 15, 26, 0) 0%, var(--deep) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .header::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 24px auto 0;
+  }
+
+  .header-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1.2;
+    text-shadow: 0 0 40px rgba(201, 168, 76, 0.3);
+    margin-bottom: 10px;
+  }
+
+  .header-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--silver);
+    letter-spacing: 2px;
+  }
+
+  .for-cyndie {
+    margin-top: 16px;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  /* Letter block */
+  .letter {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    font-size: 16px;
+    color: var(--cream);
+    line-height: 1.75;
+  }
+
+  .letter p + p { margin-top: 12px; }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+
+  /* Identity block */
+  .identity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .identity-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+
+  .identity-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .identity-value {
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .identity-value.open {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .identity-why {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  /* Stat block */
+  .stat-block {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 8px;
+    text-align: center;
+  }
+
+  .stat-name {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .stat-score {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-mod {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: var(--gold);
+  }
+
+  .stat-mod.pos { color: var(--gold); }
+  .stat-mod.neg { color: var(--red); }
+
+  /* Combat stats row */
+  .combat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .combat-stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+  .combat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .combat-value {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  .combat-value.big { font-size: 28px; }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .skill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .skill-row.expertise {
+    border-color: var(--gold-dim);
+    background: rgba(201, 168, 76, 0.05);
+  }
+
+  .skill-row.proficient {
+    border-color: var(--border);
+  }
+
+  .skill-name {
+    color: var(--cream);
+  }
+
+  .skill-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-left: 6px;
+  }
+
+  .skill-bonus {
+    font-weight: 600;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+  }
+
+  /* Features */
+  .feature {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+
+  .feature-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .feature-name {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .feature-source {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .feature-desc {
+    color: var(--text);
+    font-size: 15px;
+    margin-bottom: 8px;
+    line-height: 1.65;
+  }
+
+  .feature-why {
+    background: rgba(155, 107, 170, 0.1);
+    border-left: 2px solid var(--accent);
+    padding: 8px 12px;
+    border-radius: 0 3px 3px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--silver);
+    line-height: 1.55;
+  }
+
+  .feature-why::before {
+    content: 'Why this: ';
+    font-style: normal;
+    color: var(--accent);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Flourish block */
+  .flourish-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .flourish {
+    background: rgba(201, 168, 76, 0.05);
+    border: 1px solid var(--gold-dim);
+    border-radius: 3px;
+    padding: 10px 14px;
+  }
+
+  .flourish-name {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .flourish-desc {
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  /* Spells */
+  .spell-level-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0 10px;
+  }
+
+  .spell-level-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .spell-slots {
+    display: flex;
+    gap: 5px;
+  }
+
+  .slot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-dim);
+    background: rgba(201, 168, 76, 0.2);
+  }
+
+  .spell-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .spell-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 14px;
+  }
+
+  .spell-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: var(--cream);
+    margin-bottom: 3px;
+  }
+
+  .spell-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+  }
+
+  .tag {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  .tag-conc { background: rgba(92, 160, 122, 0.15); color: var(--green); border: 1px solid rgba(92, 160, 122, 0.3); }
+  .tag-dmg { background: rgba(196, 92, 92, 0.15); color: var(--red); border: 1px solid rgba(196, 92, 92, 0.3); }
+  .tag-ctrl { background: rgba(92, 168, 160, 0.15); color: var(--teal); border: 1px solid rgba(92, 168, 160, 0.3); }
+  .tag-heal { background: rgba(92, 160, 122, 0.15); color: var(--green); border: 1px solid rgba(92, 160, 122, 0.3); }
+  .tag-util { background: rgba(155, 107, 170, 0.15); color: var(--accent); border: 1px solid rgba(155, 107, 170, 0.3); }
+  .tag-soc { background: rgba(201, 168, 76, 0.15); color: var(--gold); border: 1px solid rgba(201, 168, 76, 0.3); }
+
+  .spell-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* Equipment */
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .equipment-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 16px;
+  }
+
+  .equipment-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: var(--cream);
+    margin-bottom: 3px;
+  }
+
+  .equipment-stats {
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 3px;
+  }
+
+  .equipment-desc {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* Attack summary */
+  .attack-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+
+  .attack-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+
+  .attack-row:last-child { border-bottom: none; }
+  .attack-name { color: var(--cream); }
+  .attack-roll { color: var(--gold); font-weight: 600; font-family: 'Cinzel', serif; }
+  .attack-dmg { color: var(--text); font-size: 14px; }
+
+  /* How to play */
+  .playbook-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 14px;
+  }
+
+  .playbook-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .playbook-title {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 5px;
+  }
+
+  .playbook-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* Your canvas */
+  .canvas-block {
+    background: linear-gradient(135deg, rgba(155, 107, 170, 0.08), rgba(201, 168, 76, 0.05));
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 12px;
+  }
+
+  .canvas-block h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 16px;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+  }
+
+  .canvas-prompt {
+    font-size: 15px;
+    color: var(--cream);
+    margin-bottom: 8px;
+    padding-left: 16px;
+    border-left: 2px solid var(--accent);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .canvas-prompt + .canvas-prompt { margin-top: 10px; }
+
+  /* Party note */
+  .party-note {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+
+  .party-member {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+
+  .party-member:last-child { border-bottom: none; }
+  .party-name { color: var(--cream); font-weight: 600; }
+  .party-class { color: var(--muted); }
+  .party-synergy { color: var(--gold); font-size: 13px; font-style: italic; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .divider-glyph {
+    color: var(--gold-dim);
+    font-size: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .stat-block { grid-template-columns: repeat(3, 1fr); }
+    .combat-row { grid-template-columns: repeat(2, 1fr); }
+    .identity-grid { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .spell-grid { grid-template-columns: 1fr; }
+    .equipment-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-label">Character Draft · Campaign Build</div>
+    <h1>The Swords Bard</h1>
+    <div class="header-sub">College of Swords · Level 5</div>
+    <div class="for-cyndie">Built with love for Cyndie — the name, the story, the soul are yours.</div>
+  </div>
+
+  <!-- Letter -->
+  <div class="letter">
+    <p>Hey Cyndie — we didn't want to hand you a blank page. This is a full build for a Level 5 Swords Bard, designed specifically for your table: Mike's structured adventures, a raucous party that loves chaos, and a character who feels <em>woven into the story</em> rather than waiting for her moment.</p>
+    <p>Every mechanical choice here has a reason. You'll see it explained as you go. The things left blank — your character's name, her history, her voice, what she looks like, what she wants — that's the canvas. We gave you the instrument. You play it.</p>
+    <p>This character doesn't sit in the corner waiting. She makes everyone around her better, and the table feels it every session.</p>
+  </div>
+
+  <!-- Identity -->
+  <div class="section">
+    <div class="section-title">Identity</div>
+    <div class="identity-grid">
+      <div class="identity-item">
+        <div class="identity-label">Name</div>
+        <div class="identity-value open">Yours to name</div>
+      </div>
+      <div class="identity-item">
+        <div class="identity-label">Race</div>
+        <div class="identity-value">Half-Elf</div>
+        <div class="identity-why">+2 CHA, two free skills, and lore that fits anywhere.</div>
+      </div>
+      <div class="identity-item">
+        <div class="identity-label">Class</div>
+        <div class="identity-value">Bard · Swords</div>
+      </div>
+      <div class="identity-item">
+        <div class="identity-label">Level</div>
+        <div class="identity-value">5</div>
+      </div>
+      <div class="identity-item">
+        <div class="identity-label">Background</div>
+        <div class="identity-value open">Entertainer · or yours</div>
+        <div class="identity-why">Entertainer gives Performance + Acrobatics and fits naturally. Charlatan works if she's edgier.</div>
+      </div>
+      <div class="identity-item">
+        <div class="identity-label">Alignment</div>
+        <div class="identity-value open">Yours to choose</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Stats -->
+  <div class="section">
+    <div class="section-title">Ability Scores</div>
+    <div class="stat-block">
+      <div class="stat">
+        <div class="stat-name">Strength</div>
+        <div class="stat-score">8</div>
+        <div class="stat-mod neg">−1</div>
+      </div>
+      <div class="stat">
+        <div class="stat-name">Dexterity</div>
+        <div class="stat-score">14</div>
+        <div class="stat-mod pos">+2</div>
+      </div>
+      <div class="stat">
+        <div class="stat-name">Constitution</div>
+        <div class="stat-score">14</div>
+        <div class="stat-mod pos">+2</div>
+      </div>
+      <div class="stat">
+        <div class="stat-name">Intelligence</div>
+        <div class="stat-score">10</div>
+        <div class="stat-mod pos">+0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-name">Wisdom</div>
+        <div class="stat-score">10</div>
+        <div class="stat-mod pos">+0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-name">Charisma</div>
+        <div class="stat-score">20</div>
+        <div class="stat-mod pos">+5</div>
+      </div>
+    </div>
+    <div class="feature-why" style="margin-top:0;">Charisma is everything — it powers your spells, your Bardic Inspiration, your skills, and your personality. 20 CHA at level 5 is the build target; you get there with 15 base + Half-Elf's +2 racial + your Level 4 Ability Score Improvement (+2 CHA). Everything else is secondary.</div>
+  </div>
+
+  <!-- Combat -->
+  <div class="section">
+    <div class="section-title">Combat Profile</div>
+    <div class="combat-row">
+      <div class="combat-stat">
+        <div class="combat-label">Hit Points</div>
+        <div class="combat-value big">38</div>
+      </div>
+      <div class="combat-stat">
+        <div class="combat-label">Armor Class</div>
+        <div class="combat-value big">15</div>
+      </div>
+      <div class="combat-stat">
+        <div class="combat-label">Initiative</div>
+        <div class="combat-value">+2</div>
+      </div>
+      <div class="combat-stat">
+        <div class="combat-label">Speed</div>
+        <div class="combat-value">30 ft</div>
+      </div>
+    </div>
+    <div class="combat-row">
+      <div class="combat-stat">
+        <div class="combat-label">Spell Save DC</div>
+        <div class="combat-value">16</div>
+      </div>
+      <div class="combat-stat">
+        <div class="combat-label">Spell Attack</div>
+        <div class="combat-value">+8</div>
+      </div>
+      <div class="combat-stat">
+        <div class="combat-label">Proficiency Bonus</div>
+        <div class="combat-value">+3</div>
+      </div>
+      <div class="combat-stat">
+        <div class="combat-label">Bardic Inspiration</div>
+        <div class="combat-value">5 / rest</div>
+      </div>
+    </div>
+    <div class="feature-why">AC 15 comes from Breastplate (medium armor — Swords Bard bonus proficiency) + DEX +2. HP 38 is healthy but not tanky — she belongs in the middle of the action, not the front of it. Spell Save DC 16 is excellent; Hold Person and Hypnotic Pattern at DC 16 make encounters winnable. Bardic Inspiration refreshes on SHORT rest at level 5 — use it freely.</div>
+  </div>
+
+  <!-- Attacks -->
+  <div class="section">
+    <div class="section-title">Attacks</div>
+    <div class="attack-block">
+      <div class="attack-row">
+        <div class="attack-name">Rapier (standard hit)</div>
+        <div class="attack-roll">+5 to hit</div>
+        <div class="attack-dmg">1d8+4 piercing</div>
+      </div>
+      <div class="attack-row">
+        <div class="attack-name">Rapier + Blade Flourish</div>
+        <div class="attack-roll">+5 to hit</div>
+        <div class="attack-dmg">1d8+4+1d8 + flourish effect</div>
+      </div>
+      <div class="attack-row">
+        <div class="attack-name">Hand Crossbow (ranged)</div>
+        <div class="attack-roll">+5 to hit</div>
+        <div class="attack-dmg">1d6+2 piercing · 30/120 ft</div>
+      </div>
+      <div class="attack-row">
+        <div class="attack-name">Vicious Mockery (cantrip)</div>
+        <div class="attack-roll">DC 16 WIS</div>
+        <div class="attack-dmg">1d4 psychic + disadvantage on target's next attack</div>
+      </div>
+    </div>
+    <div class="feature-why">Dueling fighting style (+2 damage with one-handed weapon) makes the rapier reliable. Blade Flourish adds your Bardic Inspiration die — a d8 — when you want burst. Vicious Mockery costs nothing and protects the party. Her real damage is in control spells that make everyone else's attacks land.</div>
+  </div>
+
+  <!-- Skills -->
+  <div class="section">
+    <div class="section-title">Skills & Proficiencies</div>
+    <div class="skills-grid">
+      <div class="skill-row expertise">
+        <span class="skill-name">Persuasion <span class="skill-tag">Expertise</span></span>
+        <span class="skill-bonus">+11</span>
+      </div>
+      <div class="skill-row expertise">
+        <span class="skill-name">Performance <span class="skill-tag">Expertise</span></span>
+        <span class="skill-bonus">+11</span>
+      </div>
+      <div class="skill-row proficient">
+        <span class="skill-name">Deception</span>
+        <span class="skill-bonus">+8</span>
+      </div>
+      <div class="skill-row proficient">
+        <span class="skill-name">Insight</span>
+        <span class="skill-bonus">+3</span>
+      </div>
+      <div class="skill-row proficient">
+        <span class="skill-name">Perception</span>
+        <span class="skill-bonus">+3</span>
+      </div>
+      <div class="skill-row proficient">
+        <span class="skill-name">Acrobatics</span>
+        <span class="skill-bonus">+5</span>
+      </div>
+      <div class="skill-row proficient">
+        <span class="skill-name">History</span>
+        <span class="skill-bonus">+3</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name" style="color:var(--muted);">All others (Jack of All Trades)</span>
+        <span class="skill-bonus" style="color:var(--muted);">+1</span>
+      </div>
+    </div>
+    <div class="feature-why" style="margin-top:12px;">Expertise at +11 means she's the undisputed face of the party in social encounters. In Mike's structured adventures — which almost always have social or diplomatic layers — she becomes the party's secret weapon the moment conversation starts. Jack of All Trades means she's never completely helpless on any check.</div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">✦</div><div class="divider-line"></div></div>
+
+  <!-- Features -->
+  <div class="section">
+    <div class="section-title">Class Features</div>
+
+    <div class="feature">
+      <div class="feature-header">
+        <div class="feature-name">Bardic Inspiration</div>
+        <div class="feature-source">Bard · Core</div>
+      </div>
+      <div class="feature-desc">As a bonus action, give one creature within 60 ft a d8 Bardic Inspiration die. They can add it to one ability check, attack roll, or saving throw within the next 10 minutes. You have <strong>5 uses</strong>, and they recharge on a short or long rest (Font of Inspiration, level 5).</div>
+      <div class="feature-why">This is your primary engagement engine. Every turn someone rolls something important, you're in it. You hand Nick a d8 before his Big Spell. You hand Anthony a d8 before his critical attack. The table feels you there — in their moments, not just yours. 5 uses refreshing on short rest means you give it away freely.</div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-header">
+        <div class="feature-name">Blade Flourish</div>
+        <div class="feature-source">College of Swords · Level 3</div>
+      </div>
+      <div class="feature-desc">When you take the Attack action, your speed increases by 10 ft. If a weapon attack hits, you can expend a Bardic Inspiration die to add its roll to the damage and choose one flourish:</div>
+      <div class="flourish-grid">
+        <div class="flourish">
+          <div class="flourish-name">Defensive Flourish</div>
+          <div class="flourish-desc">Add the die to damage <em>and</em> to your AC until the start of your next turn. Great when you're surrounded or protecting an ally.</div>
+        </div>
+        <div class="flourish">
+          <div class="flourish-name">Slashing Flourish</div>
+          <div class="flourish-desc">Add the die to damage. Deal the same amount to <em>another</em> creature within 5 ft of the target. One swing, two enemies hurt.</div>
+        </div>
+        <div class="flourish">
+          <div class="flourish-name">Mobile Flourish</div>
+          <div class="flourish-desc">Add the die to damage. Push the target 5 + the die result feet away. You can then move to a space adjacent to them as a reaction. Ultimate repositioning tool.</div>
+        </div>
+      </div>
+      <div class="feature-why" style="margin-top:10px;">Blade Flourish means every melee hit becomes a moment — extra damage, crowd control, or tactical repositioning. You're not just swinging, you're shaping the battlefield. Save Bardic Inspiration for flourishes when you need burst, and hand them to allies when control is more valuable than your damage spike.</div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-header">
+        <div class="feature-name">Fighting Style: Dueling</div>
+        <div class="feature-source">College of Swords · Level 3</div>
+      </div>
+      <div class="feature-desc">When you are wielding a melee weapon in one hand and no other melee weapons, you gain +2 to damage rolls with that weapon.</div>
+      <div class="feature-why">Simple and reliable. Every rapier hit does +2 damage. Free hand stays open for spellcasting components. No fiddling required.</div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-header">
+        <div class="feature-name">Jack of All Trades</div>
+        <div class="feature-source">Bard · Level 2</div>
+      </div>
+      <div class="feature-desc">Add half your proficiency bonus (+1) to any ability check you're not proficient in.</div>
+      <div class="feature-why">You're never useless on any check. In Mike's structured adventures with puzzles, traps, and knowledge challenges, this keeps you contributing constantly.</div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-header">
+        <div class="feature-name">Song of Rest</div>
+        <div class="feature-source">Bard · Level 2</div>
+      </div>
+      <div class="feature-desc">During a short rest, any friendly creatures who spend Hit Dice to recover HP can add 1d6 to each die spent.</div>
+      <div class="feature-why">You make short rests better for the whole party. Nobody has to be near death for this to matter — you're just quietly, constantly making everyone's survival easier.</div>
+    </div>
+
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">✦</div><div class="divider-line"></div></div>
+
+  <!-- Spells -->
+  <div class="section">
+    <div class="section-title">Spellbook</div>
+
+    <div class="spell-level-header">
+      <div class="spell-level-label">Cantrips</div>
+    </div>
+    <div class="spell-grid">
+      <div class="spell-card">
+        <div class="spell-name">Vicious Mockery</div>
+        <div class="spell-tags"><span class="tag tag-dmg">Damage</span><span class="tag tag-ctrl">Debuff</span></div>
+        <div class="spell-desc">Insult a creature within 60 ft. DC 16 WIS or take 1d4 psychic damage and have disadvantage on their next attack roll. No spell slot. No cost. Always available. Very on-brand.</div>
+      </div>
+      <div class="spell-card">
+        <div class="spell-name">Mage Hand</div>
+        <div class="spell-tags"><span class="tag tag-util">Utility</span></div>
+        <div class="spell-desc">Conjure a spectral hand to manipulate objects, pull levers, retrieve items, or cause minor mischief from up to 30 ft away. Essential adventuring cantrip.</div>
+      </div>
+    </div>
+
+    <div class="spell-level-header">
+      <div class="spell-level-label">1st Level</div>
+      <div class="spell-slots"><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div></div>
+      <div class="spell-level-label" style="color:var(--muted); font-size:10px;">4 SLOTS</div>
+    </div>
+    <div class="spell-grid">
+      <div class="spell-card">
+        <div class="spell-name">Healing Word</div>
+        <div class="spell-tags"><span class="tag tag-heal">Healing</span></div>
+        <div class="spell-desc">Bonus action. Restore 1d4+5 HP to any creature you can see within 60 ft. The bonus action cost is everything — you can heal and still attack or cast on the same turn. Save a life without losing your turn.</div>
+      </div>
+      <div class="spell-card">
+        <div class="spell-name">Dissonant Whispers</div>
+        <div class="spell-tags"><span class="tag tag-dmg">Damage</span><span class="tag tag-ctrl">Control</span></div>
+        <div class="spell-desc">DC 16 WIS or 3d6 psychic damage and target must use its reaction to flee. Allies get opportunity attacks as it runs. Even on a save, half damage. Fantastic battlefield control — triggers Anthony's opportunity attacks beautifully.</div>
+      </div>
+      <div class="spell-card">
+        <div class="spell-name">Thunderwave</div>
+        <div class="spell-tags"><span class="tag tag-dmg">Damage</span><span class="tag tag-ctrl">Push</span></div>
+        <div class="spell-desc">15 ft cube of thunder from you. DC 16 CON or 2d8 thunder + pushed 10 ft. Loud, dramatic, and very satisfying when surrounded. The table will hear it.</div>
+      </div>
+      <div class="spell-card">
+        <div class="spell-name">Charm Person</div>
+        <div class="spell-tags"><span class="tag tag-soc">Social</span><span class="tag tag-ctrl">Control</span></div>
+        <div class="spell-desc">DC 16 WIS or a humanoid views you as a friendly acquaintance for 1 hour. Ends if you or your companions harm them. Mike's structured adventures always have NPCs worth charming.</div>
+      </div>
+    </div>
+
+    <div class="spell-level-header">
+      <div class="spell-level-label">2nd Level</div>
+      <div class="spell-slots"><div class="slot"></div><div class="slot"></div><div class="slot"></div></div>
+      <div class="spell-level-label" style="color:var(--muted); font-size:10px;">3 SLOTS</div>
+    </div>
+    <div class="spell-grid">
+      <div class="spell-card">
+        <div class="spell-name">Hold Person</div>
+        <div class="spell-tags"><span class="tag tag-ctrl">Control</span><span class="tag-conc tag">Concentration</span></div>
+        <div class="spell-desc">DC 16 WIS or a humanoid is paralyzed for up to 1 minute. All attacks against them have advantage. All hits within 5 ft are auto-crits. Cast this on a boss and Anthony doubles his damage. Powerful synergy with the whole party.</div>
+      </div>
+      <div class="spell-card">
+        <div class="spell-name">Shatter</div>
+        <div class="spell-tags"><span class="tag tag-dmg">Damage</span></div>
+        <div class="spell-desc">10 ft sphere of thunderous concussive energy. DC 16 CON or 3d8 thunder damage. No concentration — just damage. Great for clustered enemies. Constructs and objects have disadvantage on the save.</div>
+      </div>
+      <div class="spell-card">
+        <div class="spell-name">Invisibility</div>
+        <div class="spell-tags"><span class="tag tag-util">Utility</span><span class="tag-conc tag">Concentration</span></div>
+        <div class="spell-desc">You or a willing creature becomes invisible for up to 1 hour. Ends if the target attacks or casts. Scouting, escape, setup. Incredibly flexible. Mike's adventures almost always have a use for this.</div>
+      </div>
+    </div>
+
+    <div class="spell-level-header">
+      <div class="spell-level-label">3rd Level</div>
+      <div class="spell-slots"><div class="slot"></div><div class="slot"></div></div>
+      <div class="spell-level-label" style="color:var(--muted); font-size:10px;">2 SLOTS</div>
+    </div>
+    <div class="spell-grid">
+      <div class="spell-card">
+        <div class="spell-name">Hypnotic Pattern</div>
+        <div class="spell-tags"><span class="tag tag-ctrl">Control</span><span class="tag-conc tag">Concentration</span></div>
+        <div class="spell-desc">30 ft cube of swirling patterns. DC 16 WIS or every creature is incapacitated — speed 0, can't take actions. Creatures stay incapacitated until the pattern ends or they take damage. When this lands on a group of enemies, the fight is essentially over. Save it for when it matters.</div>
+      </div>
+    </div>
+    <div class="feature-why" style="margin-top:10px;">Hold Person and Hypnotic Pattern are your two big plays. They don't do damage — they create conditions where everyone else does damage twice as effectively. That's the bard's superpower: your spell makes Nick's spell hit harder, makes Anthony's axe crit, makes Denali's arrows all land. You're a force multiplier.</div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">✦</div><div class="divider-line"></div></div>
+
+  <!-- Equipment -->
+  <div class="section">
+    <div class="section-title">Equipment</div>
+    <div class="equipment-grid">
+      <div class="equipment-item">
+        <div class="equipment-name">Rapier</div>
+        <div class="equipment-stats">+5 to hit · 1d8+4 piercing · Finesse</div>
+        <div class="equipment-desc">Your primary weapon. Elegant, precise, very bard. Blade Flourish turns each hit into a choice.</div>
+      </div>
+      <div class="equipment-item">
+        <div class="equipment-name">Breastplate</div>
+        <div class="equipment-stats">AC 15 · Medium Armor · No Stealth Penalty</div>
+        <div class="equipment-desc">Solid protection without encumbrance. Swords Bard gives you medium armor proficiency — use it.</div>
+      </div>
+      <div class="equipment-item">
+        <div class="equipment-name">Hand Crossbow</div>
+        <div class="equipment-stats">+5 to hit · 1d6+2 piercing · 30/120 ft</div>
+        <div class="equipment-desc">For when you need to contribute at range and spells are better conserved. Light, loaded, handy.</div>
+      </div>
+      <div class="equipment-item">
+        <div class="equipment-name">Musical Instrument</div>
+        <div class="equipment-stats">Your bardic focus · Your choice</div>
+        <div class="equipment-desc">Lute? Violin? A hand drum? A particularly dramatic horn? This is part of who she is. Choose something that says something.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">✦</div><div class="divider-line"></div></div>
+
+  <!-- How to play -->
+  <div class="section">
+    <div class="section-title">How to Play Her</div>
+
+    <div class="playbook-item">
+      <div class="playbook-icon">⚔️</div>
+      <div>
+        <div class="playbook-title">Round One — Read the Room</div>
+        <div class="playbook-text">Open with Hypnotic Pattern if enemies are grouped and Mike doesn't have a ready counter. Open with Hold Person on the biggest threat if it's a single dangerous humanoid. Otherwise, hand out Bardic Inspiration and get in melee. You don't have to detonate immediately — sometimes setting up Anthony or Nick's big move is the highest value play.</div>
+      </div>
+    </div>
+
+    <div class="playbook-item">
+      <div class="playbook-icon">🎭</div>
+      <div>
+        <div class="playbook-title">Social Encounters — You Are the Party</div>
+        <div class="playbook-text">Persuasion +11. Deception +8. You walk into every negotiation, every tense meeting, every interrogation as the one who talks first. Mike's structured adventures reward this. Use Charm Person when the words aren't landing. You don't need to dominate — just open the door and let the party walk through.</div>
+      </div>
+    </div>
+
+    <div class="playbook-item">
+      <div class="playbook-icon">🎲</div>
+      <div>
+        <div class="playbook-title">Bardic Inspiration — Give It Away</div>
+        <div class="playbook-text">Five uses. Refreshes on short rest. Hand them out aggressively. Give Nick one when he's winding up a spell. Give Anthony one before a critical swing. Give Tanisha one before a wild shape contested check. The die unused is wasted. You're not hoarding power — you're a battery for the group.</div>
+      </div>
+    </div>
+
+    <div class="playbook-item">
+      <div class="playbook-icon">🌀</div>
+      <div>
+        <div class="playbook-title">Concentration — Protect It</div>
+        <div class="playbook-text">Hold Person and Hypnotic Pattern both require concentration. Only one at a time. When you have a big control spell running, stay out of melee or use Defensive Flourish to boost your AC. If you get hit and fail concentration, the spell drops — position matters. Tanisha's Wild Shape forms make great bodyguards.</div>
+      </div>
+    </div>
+
+    <div class="playbook-item">
+      <div class="playbook-icon">💫</div>
+      <div>
+        <div class="playbook-title">In The In-Between — She Never Disappears</div>
+        <div class="playbook-text">Between fights, between encounters — Vicious Mockery on a bandit for roleplay flavor, Mage Hand doing something useful or funny, Charm Person turning a tense standoff into an ally. Insight checks reading NPCs. Perception holding down the flanks. She stays present. That was the whole point.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Party Synergy -->
+  <div class="section">
+    <div class="section-title">Party Synergy</div>
+    <div class="party-note">
+      <div class="party-member">
+        <div><span class="party-name">Anthony</span> <span class="party-class">Barbarian Dragonborn</span></div>
+        <div class="party-synergy">Hold Person → he auto-crits. Bardic Inspiration before his biggest swings.</div>
+      </div>
+      <div class="party-member">
+        <div><span class="party-name">Tanisha</span> <span class="party-class">Wild Shape Druid</span></div>
+        <div class="party-synergy">She's your frontline anchor. You support her forms; she protects your concentration.</div>
+      </div>
+      <div class="party-member">
+        <div><span class="party-name">Denali</span> <span class="party-class">Archer Ranger</span></div>
+        <div class="party-synergy">Hypnotic Pattern locks targets in place — every shot at advantage. Inspiration on key attacks.</div>
+      </div>
+      <div class="party-member">
+        <div><span class="party-name">Nick</span> <span class="party-class">Warlock / Cleric / Sorcerer Attorney</span></div>
+        <div class="party-synergy">Your social skills and his legal absurdity create absolute chaos in NPC interactions. Lean in.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">✦</div><div class="divider-line"></div></div>
+
+  <!-- Canvas -->
+  <div class="section">
+    <div class="section-title">Your Canvas</div>
+    <div class="canvas-block">
+      <h3>What She Doesn't Have Yet — That's Yours</h3>
+      <div class="canvas-prompt">Who is she? What's her name, and what does it tell you about her before she opens her mouth?</div>
+      <div class="canvas-prompt">What does she play, and why does that instrument specifically? Is it beautiful, battered, stolen, or gifted?</div>
+      <div class="canvas-prompt">Why is she traveling with this particular group of chaotic, raucous people? What does she want from the adventure that they can give her?</div>
+      <div class="canvas-prompt">What's the one thing she doesn't talk about? Every good bard has a story they don't perform.</div>
+      <div class="canvas-prompt">How does she carry herself when it counts — when the room goes quiet and everyone looks to her?</div>
+    </div>
+    <div class="feature-why">The mechanics give her power. The story gives her presence. Both matter, and you're the only one who can write the second part.</div>
+  </div>
+
+  <div class="footer">
+    Built for Cyndie · With care from the table · Adventure awaits
+  </div>
+
+</div>
+</body>
+</html>
